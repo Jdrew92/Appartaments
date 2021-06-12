@@ -28,7 +28,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.phtml">
                 <img class="title-logo" src="../assets/title.png" alt="logo">
             </a>
 
@@ -37,7 +37,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.php">
+                <a class="nav-link" href="index.phtml">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -52,7 +52,7 @@
 
             <!-- Nav Item - USUARIOS -->
             <li class="nav-item">
-                <a id="users-link" class="nav-link" href="gestor-usuarios.php">
+                <a id="users-link" class="nav-link" href="gestor-usuarios.phtml">
                     <i class="fas fa-users"></i>
                     <span>Gestión de Usuarios</span>
                 </a>
@@ -60,7 +60,7 @@
 
             <!-- Nav Item - TORRES -->
             <li class="nav-item">
-                <a id="torres-link" class="nav-link" href="gestor-torres.php">
+                <a id="torres-link" class="nav-link" href="gestor-torres.phtml">
                     <i class="fas fa-building"></i>
                     <span>Gestión de Torres</span>
                 </a>
@@ -68,7 +68,7 @@
 
             <!-- Nav Item - APARTAMENTOS -->
             <li class="nav-item">
-                <a id="aptos-link" class="nav-link" href="gestor-aptos.php">
+                <a id="aptos-link" class="nav-link" href="gestor-aptos.phtml">
                     <i class="fas fa-door-closed"></i>
                     <span>Gestión de Apartamentos</span>
                 </a>
@@ -76,7 +76,7 @@
 
             <!-- Nav Item - INQUILINOS -->
             <li class="nav-item">
-                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.php">
+                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.phtml">
                     <i class="fas fa-address-book"></i>
                     <span>Gestión de Inquilinos</span>
                 </a>
@@ -148,32 +148,26 @@
                         <br>
                         <div class="row g-2">
                             <br>
-                            <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Nuevo Usuario</h1>
+                            <br>
+                            <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Nueva Torre</h1>
                             <br><br><br>
                             <div class="form-customed">
                                 <form class="row g-3" action="#" method="post">
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" id="nombre" placeholder="Nombres" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" id="apellido" placeholder="Apellidos" required>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" id="nombre" placeholder="Nombre de la Torre" required>
                                         <br>
                                     </div>
-                                    <div class="col-12">
-                                        <input type="text" class="form-control" id="username" placeholder="Nombre de Usuario" required>
-                                        <br>
-                                    </div>
-                                    <div class="col-12">
-                                        <input type="password" class="form-control" id="password" placeholder="Contraseña" required>
+                                    <div class="col-md-12">
+                                        <input type="number" class="form-control" id="num_pisos" placeholder="N° de Pisos" required>
                                         <br>
                                     </div>
                                     <div class="col-md-3">
-                                        <label class="text-gray-800 text-left">Estado</label>
+                                        <label class="text-gray-800 text-left">Ascensor</label>
                                         <label class="form-switch" id="estado">
-                                            Inactivo
+                                            No
                                             <input type="checkbox" value="1">
                                             <i></i>
-                                            Activo
+                                            Sí
                                         </label>
                                         <br>
                                     </div>
@@ -184,7 +178,7 @@
                                         <input type="submit" class="btn btn-primary form-control" id="enviar" value="Guardar">
                                     </div>
                                     <div class="col-md-4">
-                                        <a class="btn btn-danger form-control" id="cancelar" href="gestor-usuarios.php">Cancelar</a>
+                                        <a class="btn btn-danger form-control" id="cancelar" href="gestor-torres.phtml">Cancelar</a>
                                     </div>
                                 </form>
                             </div>
@@ -231,7 +225,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
+                    <a class="btn btn-primary" href="login.phtml">Logout</a>
                 </div>
             </div>
         </div>

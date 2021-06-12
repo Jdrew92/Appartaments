@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 
@@ -9,14 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Appartment - Dashboard</title>
-
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.css" rel="stylesheet">
@@ -32,7 +28,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.phtml">
                 <img class="title-logo" src="../assets/title.png" alt="logo">
             </a>
 
@@ -41,7 +37,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.php">
+                <a class="nav-link" href="index.phtml">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -56,7 +52,7 @@
 
             <!-- Nav Item - USUARIOS -->
             <li class="nav-item">
-                <a id="users-link" class="nav-link" href="gestor-usuarios.php">
+                <a id="users-link" class="nav-link" href="gestor-usuarios.phtml">
                     <i class="fas fa-users"></i>
                     <span>Gestión de Usuarios</span>
                 </a>
@@ -64,7 +60,7 @@
 
             <!-- Nav Item - TORRES -->
             <li class="nav-item">
-                <a id="torres-link" class="nav-link" href="gestor-torres.php">
+                <a id="torres-link" class="nav-link" href="gestor-torres.phtml">
                     <i class="fas fa-building"></i>
                     <span>Gestión de Torres</span>
                 </a>
@@ -72,7 +68,7 @@
 
             <!-- Nav Item - APARTAMENTOS -->
             <li class="nav-item">
-                <a id="aptos-link" class="nav-link" href="gestor-aptos.php">
+                <a id="aptos-link" class="nav-link" href="gestor-aptos.phtml">
                     <i class="fas fa-door-closed"></i>
                     <span>Gestión de Apartamentos</span>
                 </a>
@@ -80,7 +76,7 @@
 
             <!-- Nav Item - INQUILINOS -->
             <li class="nav-item">
-                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.php">
+                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.phtml">
                     <i class="fas fa-address-book"></i>
                     <span>Gestión de Inquilinos</span>
                 </a>
@@ -107,18 +103,14 @@
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -132,14 +124,12 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Jandrew92</span>
-                                <i class="fas fa-caret-down"></i>
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <img class="img-profile rounded-circle" src="../assets/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Cerrar Sesión
@@ -154,13 +144,44 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <div id="iframe-content">
-                        <!-- Page Heading -->
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Bienvenido/a</h1>
+                    <div class="container">
+                        <br>
+                        <div class="row g-2">
+                            <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Detalle Usuario</h1>
+                            <br><br><br>
+                            <div class="form-customed row g-3">
+                                <div class="col-md-6">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" value="Jorge" disabled>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="apeliido">Apellido</label>
+                                    <input type="text" class="form-control" id="apellido" value="Ayala" disabled>
+                                    <br>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="username">Nombre de Usuario</label>
+                                    <input type="text" class="form-control" id="username" value="Jandrew92" disabled>
+                                    <br>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="text-gray-800 text-left">Estado</label>
+                                    <br>
+                                    <label class="form-switch" id="estado">
+                                        Inactivo
+                                        <input type="checkbox" value="1" disabled>
+                                        <i></i>
+                                        Activo
+                                    </label>
+                                    <br>
+                                </div>
+                                <div class="col-md-4"><a href="" hidden></a></div>
+                                <div class="col-md-4">
+                                    <a class="btn btn-info form-control" id="back" href="gestor-usuarios.phtml">Volver atrás</a>
+                                </div>
 
+                            </div>
                         </div>
-                        
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -190,8 +211,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -203,24 +223,25 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
+                    <a class="btn btn-primary" href="login.phtml">Logout</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
-
-    <script src="../js/iframe.js"></script>
 
 </body>
+<script src="../js/tables.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="../js/sb-admin-2.min.js"></script>
+
+<script src="../js/iframe.js"></script>
 
 </html>

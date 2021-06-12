@@ -28,7 +28,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.phtml">
                 <img class="title-logo" src="../assets/title.png" alt="logo">
             </a>
 
@@ -37,7 +37,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.php">
+                <a class="nav-link" href="index.phtml">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -52,7 +52,7 @@
 
             <!-- Nav Item - USUARIOS -->
             <li class="nav-item">
-                <a id="users-link" class="nav-link" href="gestor-usuarios.php">
+                <a id="users-link" class="nav-link" href="gestor-usuarios.phtml">
                     <i class="fas fa-users"></i>
                     <span>Gestión de Usuarios</span>
                 </a>
@@ -60,7 +60,7 @@
 
             <!-- Nav Item - TORRES -->
             <li class="nav-item">
-                <a id="torres-link" class="nav-link" href="gestor-torres.php">
+                <a id="torres-link" class="nav-link" href="gestor-torres.phtml">
                     <i class="fas fa-building"></i>
                     <span>Gestión de Torres</span>
                 </a>
@@ -68,7 +68,7 @@
 
             <!-- Nav Item - APARTAMENTOS -->
             <li class="nav-item">
-                <a id="aptos-link" class="nav-link" href="gestor-aptos.php">
+                <a id="aptos-link" class="nav-link" href="gestor-aptos.phtml">
                     <i class="fas fa-door-closed"></i>
                     <span>Gestión de Apartamentos</span>
                 </a>
@@ -76,7 +76,7 @@
 
             <!-- Nav Item - INQUILINOS -->
             <li class="nav-item">
-                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.php">
+                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.phtml">
                     <i class="fas fa-address-book"></i>
                     <span>Gestión de Inquilinos</span>
                 </a>
@@ -144,81 +144,60 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <div id="container">
-                        <!-- Page Heading -->
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <div class="row g-2">
-                                <br>
-                                <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Gestor de Torres</h1>
-                                <br>
-                                <a id="create-torre" class="btn btn-info btn-create col-md-2" href="crear-torre.php">Nueva Torre</a>
-                                <table class="table table-striped" id="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Nombre de la Torre</th>
-                                            <th scope="col">N° de Pisos</th>
-                                            <th scope="col">Ascensor</th>
-                                            <th scope="col">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Torre A</td>
-                                            <td>4</td>
-                                            <td>
-                                                <label class="form-switch" name="state">
-                                                    No
-                                                    <input type="checkbox" value="1" checked>
-                                                    <i></i>
-                                                    Sí
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <a href="detalle-torre.php" class="act-btn"><span><i class="fas fa-search"></i></span></a>
-                                                <a class="text-danger act-btn" href="#"><span><i class="fas fa-trash"></i></span></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Torre B</td>
-                                            <td>4</td>
-                                            <td>
-                                                <label class="form-switch" name="state">
-                                                    No
-                                                    <input type="checkbox" value="1">
-                                                    <i></i>
-                                                    Sí
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="act-btn"><span><i class="fas fa-search"></i></span></a>
-                                                <a class="text-danger act-btn" href="#"><span><i class="fas fa-trash"></i></span></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Torre C</td>
-                                            <td>4</td>
-                                            <td>
-                                                <label class="form-switch" name="state">
-                                                    No
-                                                    <input type="checkbox" value="1">
-                                                    <i></i>
-                                                    Sí
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="act-btn"><span><i class="fas fa-search"></i></span></a>
-                                                <a class="text-danger act-btn" href="#"><span><i class="fas fa-trash"></i></span></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                    <div class="container">
+                        <div class="row g-2">
+                            <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Nuevo Apartamento</h1>
+                            <br><br>
+                            <div class="form-customed">
+                                <form class="row g-3" action="#" method="post">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="torres">Torre</label>
+                                            <select class="form-control" id="torres">
+                                                <option value="">Escoja una Torre</option>
+                                                <option value="Torre A">Torre A</option>
+                                                <option value="Torre B">Torre B</option>
+                                                <option value="Torre C">Torre C</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="number" class="form-control" id="num_apto" placeholder="N° Apartamento" required>
+                                        <br>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="number" class="form-control" id="num_piso" placeholder="N° de Piso" required>
+                                        <br>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" class="form-control" id="area" placeholder="Area en M²" required>
+                                        <br>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="text-gray-800 text-left">Estado</label>
+                                        <br>
+                                        <label class="form-switch" id="estado">
+                                            Ocupado
+                                            <input class="col-md-1" type="checkbox" value="1">
+                                            <i></i>
+                                            Disponible
+                                        </label>
+                                        <br>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="hidden" name="create" value="create">
+                                    </div>
+                                    <div class="col-12"><br></div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-4">
+                                        <input type="submit" class="btn btn-primary form-control" id="enviar" value="Guardar">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a class="btn btn-danger form-control" id="cancelar" href="gestor-aptos.phtml">Cancelar</a>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -260,7 +239,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
+                    <a class="btn btn-primary" href="login.phtml">Logout</a>
                 </div>
             </div>
         </div>
@@ -268,17 +247,17 @@
 
 
 </body>
-   <!-- Bootstrap core JavaScript-->
-   <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../js/tables.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="../js/sb-admin-2.min.js"></script>
 
-    <script src="../js/iframe.js"></script>
-    <script src="../js/tables.js"></script>
+<script src="../js/iframe.js"></script>
 
 </html>
