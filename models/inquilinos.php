@@ -1,6 +1,6 @@
 <?php
 
-class Inquilinos{
+class Inquilino{
 
 	protected $idInquilino;
 	protected $nombre;
