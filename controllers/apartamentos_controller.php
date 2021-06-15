@@ -22,7 +22,7 @@
             $selectAll = $db->query("SELECT * FROM apartamentos");
 
             foreach ($selectAll->fetchAll() as $apartment) {
-                $a = new Apartamentos();
+                $a = new Apartamento();
                 $a->setIdApartamento($apartment['idApartamento']);
                 $a->setTorres_idTorre($apartment['Torres_idTorre']);
                 $a->setNum_apto($apartment['num_apto']);
