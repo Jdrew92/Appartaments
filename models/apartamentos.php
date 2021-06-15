@@ -1,6 +1,6 @@
 <?php
 
-class Apartamentos{
+class Apartamento{
 
 	protected $area;
 	protected $idApartamento;

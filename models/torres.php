@@ -1,7 +1,7 @@
 	
 	<?php
 
-    class Apartamentos
+    class Torre
     {
 
         protected $idTorre;
