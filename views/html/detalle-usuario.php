@@ -1,4 +1,5 @@
 <?php
+    include('../../controllers/session.php');  
     require_once("../../controllers/usuarioCrud.php");
     if(isset($_GET['id'])){
         $u = UsuarioCrud::buscar($_GET['id']); 

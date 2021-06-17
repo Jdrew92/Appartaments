@@ -1,3 +1,9 @@
+<?php
+$error = 0;
+if (isset($_GET['error'])) {
+    $error = $_GET['error'];
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -13,9 +19,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.css" rel="stylesheet">
@@ -40,18 +44,20 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Bienvenido/a</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" action="../../controllers/login.php" method="POST">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="username"
-                                                aria-describedby="emailHelp" placeholder="Nombre de Usuario">
+                                            <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Nombre de Usuario">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Contraseña">
+                                            <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Contraseña">
                                         </div>
-                                        <a href="index.phtml" class="btn btn-primary btn-user btn-block">
-                                            Iniciar Sesión
-                                        </a>
+                                        <input type="submit" class="btn btn-primary btn-user btn-block" value="Iniciar Sesión" />
+                                        <div class="text-center">
+                                            <span class="text-danger"><?php if ($error == 1) {
+                                                                            echo 'El usuario y/o contraseña están errados';
+                                                                        } ?></span>
+                                        </div>
+
                                     </form>
                                     <hr>
                                     <div class="text-center">

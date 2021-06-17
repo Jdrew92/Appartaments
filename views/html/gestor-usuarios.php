@@ -1,4 +1,5 @@
 <?php
+include('../../controllers/session.php');
 require_once('../../controllers/usuarioCrud.php');
 $usuarios = UsuarioCrud::listar();
 ?>

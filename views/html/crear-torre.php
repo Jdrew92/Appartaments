@@ -1,3 +1,7 @@
+<?php
+    include('../../controllers/session.php');
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 

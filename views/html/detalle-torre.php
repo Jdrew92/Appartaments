@@ -1,4 +1,5 @@
 <?php
+    include('../../controllers/session.php');
     require_once('../../controllers/torreCrud.php');
     if(isset($_GET['id'])){
         $t = TorreCrud::buscar($_GET['id']);
