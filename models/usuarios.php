@@ -11,7 +11,6 @@
         protected $email;
         protected $estado;
         protected $password;
-        protected $tipusu;
 
         public function setIdUsuario($idUsuario)
         {
@@ -89,40 +88,7 @@
         {
             return $this->password;
         }
-        /////
-        public function setTipusu($tipusu)
-        {
-            $this->tipusu = $tipusu;
-            return $this;
-        }
 
-        public function getTipusu()
-        {
-            return $this->tipusu;
-        }
-
-        public function getTipusuArray()
-        {
-            return array('P' => 'PROPIETARIO', 'I' => 'INQUILINO', 'A' => 'ADMINISTRADOR');
-        }
-
-        public function getTipusuDetalle()
-        {
-            switch ($this->tipusu) {
-                case 'P':
-                    $tipusu = 'PROPIETARIO';
-                    break;
-                case 'A':
-                    $tipusu = 'ADMINISTRADOR';
-                    break;
-                case 'I':
-                    $tipusu = 'INQUILINO';
-                    break;
-                default:
-                    $retorno = $this->tipusu;
-            }
-            return $retorno;
-        }
         /////
 
 

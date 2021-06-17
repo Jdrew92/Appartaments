@@ -1,5 +1,10 @@
+<?php
+include('../../controllers/session.php');
+require_once('../../controllers/usuarioCrud.php');
+$usuarios = UsuarioCrud::listar();
+?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
 
@@ -8,6 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <title>Appartment - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -28,7 +35,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.phtml">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <img class="title-logo" src="../assets/title.png" alt="logo">
             </a>
 
@@ -37,7 +44,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.phtml">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -52,7 +59,7 @@
 
             <!-- Nav Item - USUARIOS -->
             <li class="nav-item">
-                <a id="users-link" class="nav-link" href="gestor-usuarios.phtml">
+                <a id="users-link" class="nav-link" href="gestor-usuarios.php">
                     <i class="fas fa-users"></i>
                     <span>Gestión de Usuarios</span>
                 </a>
@@ -60,7 +67,7 @@
 
             <!-- Nav Item - TORRES -->
             <li class="nav-item">
-                <a id="torres-link" class="nav-link" href="gestor-torres.phtml">
+                <a id="torres-link" class="nav-link" href="gestor-torres.php">
                     <i class="fas fa-building"></i>
                     <span>Gestión de Torres</span>
                 </a>
@@ -68,7 +75,7 @@
 
             <!-- Nav Item - APARTAMENTOS -->
             <li class="nav-item">
-                <a id="aptos-link" class="nav-link" href="gestor-aptos.phtml">
+                <a id="aptos-link" class="nav-link" href="gestor-aptos.php">
                     <i class="fas fa-door-closed"></i>
                     <span>Gestión de Apartamentos</span>
                 </a>
@@ -76,7 +83,7 @@
 
             <!-- Nav Item - INQUILINOS -->
             <li class="nav-item">
-                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.phtml">
+                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.php">
                     <i class="fas fa-address-book"></i>
                     <span>Gestión de Inquilinos</span>
                 </a>
@@ -144,37 +151,55 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <div class="container">
-                        <br>
-                        <div class="row g-2">
-                            <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Detalle Torre</h1>
-                            <br><br><br>
-                            <div class="form-customed row g-3">
-                                <div class="col-md-12">
-                                    <label for="nombre">Nombre de la Torre</label>
-                                    <input type="text" class="form-control" id="nombre" value="Torre A" disabled>
-                                    <br>
-                                </div>
-                                <div class="col-md-12">
-                                    <label for="num_pisos">N° de Pisos</label>
-                                    <input type="number" class="form-control" id="num_pisos" value="4" disabled>
-                                    <br>
-                                </div>
-                                <div class="col-md-12">
-                                    <label class="text-gray-800 text-left">Ascensor</label>
-                                    <br>
-                                    <label class="form-switch" id="estado">
-                                        No
-                                        <input type="checkbox" value="1" checked disabled>
-                                        <i></i>
-                                        Sí
-                                    </label>
-                                    <br>
-                                </div>
-                                <div class="col-md-4"><a href="" hidden></a></div>
-                                <div class="col-md-4">
-                                    <a href="gestor-torres.phtml" class="btn btn-info form-control" id="back">Volver atrás</a>
-                                </div>
+                    <div id="container">
+                        <!-- Page Heading -->
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <div class="row g-2">
+                                <br>
+                                <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Gestor de Usuarios</h1>
+                                <a id="create-usuario" class="btn btn-info btn-create col-md-2" href="crear-usuario.php">Nuevo Usuario</a>
+                                <table class="table table-striped" id="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Nombre de Usuario</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Apellido</th>
+                                            <th scope="col">Estado</th>
+                                            <th scope="col">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $i = 0;
+                                        foreach ($usuarios as $u) {
+                                            $i ++;
+                                            echo "<tr>";
+                                            echo "<th scope='row'>" . $i . "</th>";
+                                            echo "<td>" . $u->getUsername() . "</td>";
+                                            echo "<td>" . $u->getNombre() . "</td>";
+                                            echo "<td>" . $u->getApellido() . "</td>";
+                                            echo '<td>
+                                                    <label class="form-switch" name="state">
+                                                        Inactivo
+                                                        <input type="checkbox" value="' . $u->getEstado() . '"';
+                                            if ($u->getEstado() == 1) {
+                                                echo "checked";
+                                            }
+                                            echo ' onclick="edit(' . $u->getIdUsuario() . ',' . $u->getEstado() . ')">
+                                                        <i></i>
+                                                        Activo
+                                                        </label>
+                                                    </td>';
+                                            echo '<td>
+                                                    <a href="detalle-usuario.php?id=' . $u->getIdUsuario() . '" class="act-btn"><span><i class="fas fa-search"></i></span></a>
+                                                    <a class="text-danger act-btn" href="" onClick="remove(' . $u->getIdUsuario() . ')"><span><i class="fas fa-trash"></i></span></a>
+                                                  </td>';
+                                            echo "</tr>";
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -218,15 +243,12 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.phtml">Logout</a>
+                    <a class="btn btn-primary" href="login.php">Logout</a>
                 </div>
             </div>
         </div>
     </div>
-
-
 </body>
-<script src="../js/tables.js"></script>
 <!-- Bootstrap core JavaScript-->
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -237,6 +259,4 @@
 <!-- Custom scripts for all pages-->
 <script src="../js/sb-admin-2.min.js"></script>
 
-<script src="../js/iframe.js"></script>
-
-</html>
+<script src="../js/actions.js"></script>

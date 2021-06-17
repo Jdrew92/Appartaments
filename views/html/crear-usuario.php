@@ -1,3 +1,6 @@
+<?php
+    include('../../controllers/session.php');
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -144,81 +147,61 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <div id="container">
-                        <!-- Page Heading -->
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <div class="row g-2">
-                                <br>
-                                <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Gestor de Torres</h1>
-                                <br>
-                                <a id="create-torre" class="btn btn-info btn-create col-md-2" href="crear-torre.phtml">Nueva Torre</a>
-                                <table class="table table-striped" id="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Nombre de la Torre</th>
-                                            <th scope="col">N° de Pisos</th>
-                                            <th scope="col">Ascensor</th>
-                                            <th scope="col">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Torre A</td>
-                                            <td>4</td>
-                                            <td>
-                                                <label class="form-switch" name="state">
-                                                    No
-                                                    <input type="checkbox" value="1" checked>
-                                                    <i></i>
-                                                    Sí
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <a href="detalle-torre.phtml" class="act-btn"><span><i class="fas fa-search"></i></span></a>
-                                                <a class="text-danger act-btn" href="#"><span><i class="fas fa-trash"></i></span></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Torre B</td>
-                                            <td>4</td>
-                                            <td>
-                                                <label class="form-switch" name="state">
-                                                    No
-                                                    <input type="checkbox" value="1">
-                                                    <i></i>
-                                                    Sí
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="act-btn"><span><i class="fas fa-search"></i></span></a>
-                                                <a class="text-danger act-btn" href="#"><span><i class="fas fa-trash"></i></span></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Torre C</td>
-                                            <td>4</td>
-                                            <td>
-                                                <label class="form-switch" name="state">
-                                                    No
-                                                    <input type="checkbox" value="1">
-                                                    <i></i>
-                                                    Sí
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="act-btn"><span><i class="fas fa-search"></i></span></a>
-                                                <a class="text-danger act-btn" href="#"><span><i class="fas fa-trash"></i></span></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                    <div class="container">
+                        <br>
+                        <div class="row g-2">
+                            <br>
+                            <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Nuevo Usuario</h1>
+                            <br><br><br>
+                            <div class="form-customed">
+                                <form class="row g-3" action="../../controllers/UsuarioController.php" method="post">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombres" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellidos" required>
+                                        <br>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" class="form-control" id="username" name="username" placeholder="Nombre de Usuario" required>
+                                        <br>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                        <br>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="email" class="form-control" id="email-confirm" placeholder="Email" required>
+                                        <br>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required>
+                                        <br>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="text-gray-800 text-left">Estado</label>
+                                        <label class="form-switch">
+                                            Inactivo
+                                            <input type="hidden" value="0" name="estado">
+                                            <input type="checkbox" value="1" id="estado" name="estado">
+                                            <i></i>
+                                            Activo
+                                        </label>
+                                        <br>
+                                    </div>
+                                    <div class="col-md-9"><input type="hidden" name="create" value="create"></div>
+                                    <div class="col-12"><br></div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-4">
+                                        <input type="submit" class="btn btn-primary form-control" id="enviar" value="Guardar">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a class="btn btn-danger form-control" id="cancelar" href="gestor-usuarios.php">Cancelar</a>
+                                    </div>
+                                </form>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -268,17 +251,17 @@
 
 
 </body>
-   <!-- Bootstrap core JavaScript-->
-   <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../js/tables.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="../js/sb-admin-2.min.js"></script>
 
-    <script src="../js/iframe.js"></script>
-    <script src="../js/tables.js"></script>
+<script src="../js/iframe.js"></script>
 
 </html>
