@@ -28,7 +28,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.phtml">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <img class="title-logo" src="../assets/title.png" alt="logo">
             </a>
 
@@ -37,7 +37,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.phtml">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -52,7 +52,7 @@
 
             <!-- Nav Item - USUARIOS -->
             <li class="nav-item">
-                <a id="users-link" class="nav-link" href="gestor-usuarios.phtml">
+                <a id="users-link" class="nav-link" href="gestor-usuarios.php">
                     <i class="fas fa-users"></i>
                     <span>Gestión de Usuarios</span>
                 </a>
@@ -60,7 +60,7 @@
 
             <!-- Nav Item - TORRES -->
             <li class="nav-item">
-                <a id="torres-link" class="nav-link" href="gestor-torres.phtml">
+                <a id="torres-link" class="nav-link" href="gestor-torres.php">
                     <i class="fas fa-building"></i>
                     <span>Gestión de Torres</span>
                 </a>
@@ -68,7 +68,7 @@
 
             <!-- Nav Item - APARTAMENTOS -->
             <li class="nav-item">
-                <a id="aptos-link" class="nav-link" href="gestor-aptos.phtml">
+                <a id="aptos-link" class="nav-link" href="gestor-aptos.php">
                     <i class="fas fa-door-closed"></i>
                     <span>Gestión de Apartamentos</span>
                 </a>
@@ -76,7 +76,7 @@
 
             <!-- Nav Item - INQUILINOS -->
             <li class="nav-item">
-                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.phtml">
+                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.php">
                     <i class="fas fa-address-book"></i>
                     <span>Gestión de Inquilinos</span>
                 </a>
@@ -147,35 +147,43 @@
                     <div class="container">
                         <br>
                         <div class="row g-2">
-                            <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Detalle Torre</h1>
+                            <br>
+                            <br>
+                            <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Nueva Torre</h1>
                             <br><br><br>
-                            <div class="form-customed row g-3">
-                                <div class="col-md-12">
-                                    <label for="nombre">Nombre de la Torre</label>
-                                    <input type="text" class="form-control" id="nombre" value="Torre A" disabled>
-                                    <br>
-                                </div>
-                                <div class="col-md-12">
-                                    <label for="num_pisos">N° de Pisos</label>
-                                    <input type="number" class="form-control" id="num_pisos" value="4" disabled>
-                                    <br>
-                                </div>
-                                <div class="col-md-12">
-                                    <label class="text-gray-800 text-left">Ascensor</label>
-                                    <br>
-                                    <label class="form-switch" id="estado">
-                                        No
-                                        <input type="checkbox" value="1" checked disabled>
-                                        <i></i>
-                                        Sí
-                                    </label>
-                                    <br>
-                                </div>
-                                <div class="col-md-4"><a href="" hidden></a></div>
-                                <div class="col-md-4">
-                                    <a href="gestor-torres.phtml" class="btn btn-info form-control" id="back">Volver atrás</a>
-                                </div>
+                            <div class="form-customed">
+                                <form class="row g-3" action="../../controllers/TorreController.php" method="post">
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre de la Torre" required>
+                                        <br>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="number" class="form-control" id="num_pisos" name="num_pisos" placeholder="N° de Pisos" required>
+                                        <br>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="text-gray-800 text-left">Ascensor</label>
+                                        <label class="form-switch" id="estado">
+                                            No
+                                            <input type="hidden" name="ascensor" value="0">
+                                            <input type="checkbox" value="1" name="ascensor">
+                                            <i></i>
+                                            Sí
+                                        </label>
+                                        <br>
+                                    </div>
+                                    <div class="col-md-9"><input type="hidden" name="create" value="create"></div>
+                                    <div class="col-12"><br></div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-4">
+                                        <input type="submit" class="btn btn-primary form-control" id="enviar" value="Guardar">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a class="btn btn-danger form-control" id="cancelar" href="gestor-torres.php">Cancelar</a>
+                                    </div>
+                                </form>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -218,7 +226,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.phtml">Logout</a>
+                    <a class="btn btn-primary" href="login.php">Logout</a>
                 </div>
             </div>
         </div>

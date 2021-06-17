@@ -258,33 +258,4 @@ $usuarios = UsuarioCrud::listar();
 <!-- Custom scripts for all pages-->
 <script src="../js/sb-admin-2.min.js"></script>
 
-<script src="../js/iframe.js"></script>
-
-
-<script>
-    function remove(id) {
-        if (confirm("¿Desea eliminar este elemento?")) {
-            $.post("../../controllers/UsuarioController.php", {
-                delete: 'delete',
-                id: id
-            });
-            location.reload();
-            return false;
-        }
-    }
-</script>
-
-
-<script>
-    function edit(id, estado) {
-        if (confirm("¿Esta seguro de cambiar el estado?")) {
-            $.post("../../controllers/UsuarioController.php", {
-                update: "update",
-                id: id,
-                estado: estado
-            });
-            location.reload();
-            return false;
-        }
-    }
-</script>
+<script src="../js/actions.js"></script>

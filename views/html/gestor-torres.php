@@ -1,3 +1,7 @@
+<?php
+require_once('../../controllers/torreCrud.php');
+$torres = TorreCrud::listar();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -28,7 +32,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.phtml">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <img class="title-logo" src="../assets/title.png" alt="logo">
             </a>
 
@@ -37,7 +41,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.phtml">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -52,7 +56,7 @@
 
             <!-- Nav Item - USUARIOS -->
             <li class="nav-item">
-                <a id="users-link" class="nav-link" href="gestor-usuarios.phtml">
+                <a id="users-link" class="nav-link" href="gestor-usuarios.php">
                     <i class="fas fa-users"></i>
                     <span>Gestión de Usuarios</span>
                 </a>
@@ -60,7 +64,7 @@
 
             <!-- Nav Item - TORRES -->
             <li class="nav-item">
-                <a id="torres-link" class="nav-link" href="gestor-torres.phtml">
+                <a id="torres-link" class="nav-link" href="gestor-torres.php">
                     <i class="fas fa-building"></i>
                     <span>Gestión de Torres</span>
                 </a>
@@ -68,7 +72,7 @@
 
             <!-- Nav Item - APARTAMENTOS -->
             <li class="nav-item">
-                <a id="aptos-link" class="nav-link" href="gestor-aptos.phtml">
+                <a id="aptos-link" class="nav-link" href="gestor-aptos.php">
                     <i class="fas fa-door-closed"></i>
                     <span>Gestión de Apartamentos</span>
                 </a>
@@ -76,7 +80,7 @@
 
             <!-- Nav Item - INQUILINOS -->
             <li class="nav-item">
-                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.phtml">
+                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.php">
                     <i class="fas fa-address-book"></i>
                     <span>Gestión de Inquilinos</span>
                 </a>
@@ -144,46 +148,54 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <div class="container">
-                        <br>
-                        <div class="row g-2">
-                            <br>
-                            <br>
-                            <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Nueva Torre</h1>
-                            <br><br><br>
-                            <div class="form-customed">
-                                <form class="row g-3" action="#" method="post">
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" id="nombre" placeholder="Nombre de la Torre" required>
-                                        <br>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <input type="number" class="form-control" id="num_pisos" placeholder="N° de Pisos" required>
-                                        <br>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label class="text-gray-800 text-left">Ascensor</label>
-                                        <label class="form-switch" id="estado">
-                                            No
-                                            <input type="checkbox" value="1">
-                                            <i></i>
-                                            Sí
-                                        </label>
-                                        <br>
-                                    </div>
-                                    <div class="col-md-9"><input type="hidden" name="create" value="create"></div>
-                                    <div class="col-12"><br></div>
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-4">
-                                        <input type="submit" class="btn btn-primary form-control" id="enviar" value="Guardar">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a class="btn btn-danger form-control" id="cancelar" href="gestor-torres.phtml">Cancelar</a>
-                                    </div>
-                                </form>
-                            </div>
+                    <div id="container">
+                        <!-- Page Heading -->
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <div class="row g-2">
+                                <br>
+                                <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Gestor de Torres</h1>
+                                <br>
+                                <a id="create-torre" class="btn btn-info btn-create col-md-2" href="crear-torre.php">Nueva Torre</a>
+                                <table class="table table-striped" id="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Nombre de la Torre</th>
+                                            <th scope="col">N° de Pisos</th>
+                                            <th scope="col">Ascensor</th>
+                                            <th scope="col">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $i = 0;
+                                        foreach ($torres as $torre) {
+                                            $i++;
+                                            echo '<tr>';
+                                            echo '<th scope="row">' . $i . '</th>';
+                                            echo '<td>' . $torre->getNombre() . '</td>';
+                                            echo '<td>' . $torre->getNum_pisos() . '</td>';
+                                            echo '<td>
+                                            <label class="form-switch" name="state">
+                                                No
+                                                <input type="checkbox" value="' . $torre->getAscensor() . '" ';
+                                            if ($torre->getAscensor() == 1) {
+                                                echo 'checked disabled';
+                                            }
 
+                                            echo '><i></i> Sí </label></td>';
+                                            echo '<td>
+                                                    <a href="detalle-torre.php?id='.$torre->getIdTorre().'" class="act-btn"><span><i class="fas fa-search"></i></span></a>
+                                                    <a class="text-danger act-btn" href="" onclick="remove('.$torre->getIdTorre().')"><span><i class="fas fa-trash"></i></span></a>
+                                                  </td>
+                                                  </tr>';
+                                        }
+                                        ?>   
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
+
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -225,7 +237,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.phtml">Logout</a>
+                    <a class="btn btn-primary" href="login.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -233,7 +245,6 @@
 
 
 </body>
-<script src="../js/tables.js"></script>
 <!-- Bootstrap core JavaScript-->
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -244,6 +255,7 @@
 <!-- Custom scripts for all pages-->
 <script src="../js/sb-admin-2.min.js"></script>
 
-<script src="../js/iframe.js"></script>
+<script src="../js/actions.js"></script>
+
 
 </html>
