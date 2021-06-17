@@ -14,7 +14,9 @@
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.css" rel="stylesheet">
@@ -54,7 +56,7 @@
 
             <!-- Nav Item - USUARIOS -->
             <li class="nav-item">
-                <a id="users-link" class="nav-link" href="gestor-usuarios.phtml">
+                <a id="users-link" class="nav-link" href="gestor-usuarios.php">
                     <i class="fas fa-users"></i>
                     <span>Gestión de Usuarios</span>
                 </a>
@@ -105,14 +107,18 @@
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -126,12 +132,14 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="../assets/undraw_profile.svg">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Jandrew92</span>
+                                <i class="fas fa-caret-down"></i>
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Cerrar Sesión
@@ -146,83 +154,13 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <div id="container">
+                    <div id="iframe-content">
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <div class="row g-2">
-                                <br>
-                                <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Gestor de Usuarios</h1>
-                                <a id="create-usuario" class="btn btn-info btn-create col-md-2" href="crear-usuario.phtml">Nuevo Usuario</a>
-                                <table class="table table-striped" id="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Nombre de Usuario</th>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Apellido</th>
-                                            <th scope="col">Estado</th>
-                                            <th scope="col">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Jandrew92</td>
-                                            <td>Jorge</td>
-                                            <td>Ayala</td>
-                                            <td>
-                                                <label class="form-switch" name="state">
-                                                    Inactivo
-                                                    <input type="checkbox" value="1" checked>
-                                                    <i></i>
-                                                    Activo
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <a href="detalle-usuario.phtml" class="act-btn"><span><i class="fas fa-search"></i></span></a>
-                                                <a class="text-danger act-btn" href="#"><span><i class="fas fa-trash"></i></span></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jandrew92</td>
-                                            <td>Jorge</td>
-                                            <td>Ayala</td>
-                                            <td>
-                                                <label class="form-switch" name="state">
-                                                    Inactivo
-                                                    <input type="checkbox" value="1">
-                                                    <i></i>
-                                                    Activo
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="act-btn"><span><i class="fas fa-search"></i></span></a>
-                                                <a class="text-danger act-btn" href="#"><span><i class="fas fa-trash"></i></span></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Jandrew92</td>
-                                            <td>Jorge</td>
-                                            <td>Ayala</td>
-                                            <td>
-                                                <label class="form-switch" name="state">
-                                                    Inactivo
-                                                    <input type="checkbox" value="1">
-                                                    <i></i>
-                                                    Activo
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="act-btn"><span><i class="fas fa-search"></i></span></a>
-                                                <a class="text-danger act-btn" href="#"><span><i class="fas fa-trash"></i></span></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <h1 class="h3 mb-0 text-gray-800">Bienvenido/a</h1>
+
                         </div>
+                        
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -252,7 +190,8 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -281,3 +220,7 @@
     <script src="../js/sb-admin-2.min.js"></script>
 
     <script src="../js/iframe.js"></script>
+
+</body>
+
+</html>

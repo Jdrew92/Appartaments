@@ -1,7 +1,9 @@
 <?php
     require_once('db.php');
+    require_once('config.php');
+    require_once(BASE_PATH.'../models/usuarios.php');
 
-    class UsuarioController{
+    class UsuarioCrud{
         public function __construct(){}
 
         public static function crear($user){
@@ -23,12 +25,12 @@
 
             foreach ($selectAll->fetchAll() as $user) {
                 $u = new Usuario();
-                $u->getIdUsuario($user['idUsuario']);
-                $u->getUsername($user['username']);
-                $u->getNombre($user['nombre']);
-                $u->getApellido($user['apellido']);
-                $u->getEmail($user['email']);
-                $u->getPassword($user['password']);
+                $u->setIdUsuario($user['idUsuario']);
+                $u->setUsername($user['username']);
+                $u->setNombre($user['nombre']);
+                $u->setApellido($user['apellido']);
+                $u->setEmail($user['email']);
+                $u->setPassword($user['password']);
                 $u->setEstado($user['estado']);
                 $users_list[] = $u;
             }
@@ -37,7 +39,7 @@
 
         public static function eliminar($id){
             $db = Db::conectar();
-            $delete = $db->prepare('SELECT * FROM usuarios WHERE idUsuario = :id');
+            $delete = $db->prepare('DELETE FROM usuarios WHERE idUsuario = :id');
             $delete->bindValue('id', $id);
             $delete->execute();
         }
@@ -49,21 +51,21 @@
             $select->execute();
             $user = $select->fetch();
             $u = new Usuario();
-            $u->getIdUsuario($user['idUsuario']);
-            $u->getUsername($user['username']);
-            $u->getNombre($user['nombre']);
-            $u->getApellido($user['apellido']);
-            $u->getEmail($user['email']);
-            $u->getPassword($user['password']);
+            $u->setIdUsuario($user['idUsuario']);
+            $u->setUsername($user['username']);
+            $u->setNombre($user['nombre']);
+            $u->setApellido($user['apellido']);
+            $u->setEmail($user['email']);
+            $u->setPassword($user['password']);
             $u->setEstado($user['estado']);
             return $u;
         }
 
-        public static function editar($user){
+        public static function editar($id, $estado){
             $db = Db::conectar();
             $edit = $db->prepare('UPDATE usuarios SET estado=:estado WHERE idUsuario = :id');
-            $edit->bindValue('id', $user->getIdUsuario());
-            $edit->bindValue('estado', $user->getEstado());
+            $edit->bindValue('id', $id);
+            $edit->bindValue('estado', $estado);
             $edit->execute();
         }
     }

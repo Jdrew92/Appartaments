@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 
@@ -9,14 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Appartment - Dashboard</title>
-
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.css" rel="stylesheet">
@@ -107,18 +103,14 @@
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -132,14 +124,12 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Jandrew92</span>
-                                <i class="fas fa-caret-down"></i>
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <img class="img-profile rounded-circle" src="../assets/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Cerrar Sesión
@@ -154,13 +144,61 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <div id="iframe-content">
-                        <!-- Page Heading -->
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Bienvenido/a</h1>
+                    <div class="container">
+                        <br>
+                        <div class="row g-2">
+                            <br>
+                            <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Nuevo Usuario</h1>
+                            <br><br><br>
+                            <div class="form-customed">
+                                <form class="row g-3" action="../../controllers/UsuarioController.php" method="post">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombres" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellidos" required>
+                                        <br>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" class="form-control" id="username" name="username" placeholder="Nombre de Usuario" required>
+                                        <br>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                        <br>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="email" class="form-control" id="email-confirm" placeholder="Email" required>
+                                        <br>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required>
+                                        <br>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="text-gray-800 text-left">Estado</label>
+                                        <label class="form-switch">
+                                            Inactivo
+                                            <input type="hidden" value="0" name="estado">
+                                            <input type="checkbox" value="1" id="estado" name="estado">
+                                            <i></i>
+                                            Activo
+                                        </label>
+                                        <br>
+                                    </div>
+                                    <div class="col-md-9"><input type="hidden" name="create" value="create"></div>
+                                    <div class="col-12"><br></div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-4">
+                                        <input type="submit" class="btn btn-primary form-control" id="enviar" value="Guardar">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a class="btn btn-danger form-control" id="cancelar" href="gestor-usuarios.php">Cancelar</a>
+                                    </div>
+                                </form>
+                            </div>
 
                         </div>
-                        
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -190,8 +228,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -209,18 +246,19 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
-
-    <script src="../js/iframe.js"></script>
 
 </body>
+<script src="../js/tables.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="../js/sb-admin-2.min.js"></script>
+
+<script src="../js/iframe.js"></script>
 
 </html>

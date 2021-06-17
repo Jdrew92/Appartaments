@@ -1,3 +1,9 @@
+<?php
+    require_once("../../controllers/usuarioCrud.php");
+    if(isset($_GET['id'])){
+        $u = UsuarioCrud::buscar($_GET['id']); 
+    }
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -28,7 +34,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.phtml">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <img class="title-logo" src="../assets/title.png" alt="logo">
             </a>
 
@@ -37,7 +43,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.phtml">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -52,7 +58,7 @@
 
             <!-- Nav Item - USUARIOS -->
             <li class="nav-item">
-                <a id="users-link" class="nav-link" href="gestor-usuarios.phtml">
+                <a id="users-link" class="nav-link" href="gestor-usuarios.php">
                     <i class="fas fa-users"></i>
                     <span>Gestión de Usuarios</span>
                 </a>
@@ -60,7 +66,7 @@
 
             <!-- Nav Item - TORRES -->
             <li class="nav-item">
-                <a id="torres-link" class="nav-link" href="gestor-torres.phtml">
+                <a id="torres-link" class="nav-link" href="gestor-torres.php">
                     <i class="fas fa-building"></i>
                     <span>Gestión de Torres</span>
                 </a>
@@ -68,7 +74,7 @@
 
             <!-- Nav Item - APARTAMENTOS -->
             <li class="nav-item">
-                <a id="aptos-link" class="nav-link" href="gestor-aptos.phtml">
+                <a id="aptos-link" class="nav-link" href="gestor-aptos.php">
                     <i class="fas fa-door-closed"></i>
                     <span>Gestión de Apartamentos</span>
                 </a>
@@ -76,7 +82,7 @@
 
             <!-- Nav Item - INQUILINOS -->
             <li class="nav-item">
-                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.phtml">
+                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.php">
                     <i class="fas fa-address-book"></i>
                     <span>Gestión de Inquilinos</span>
                 </a>
@@ -147,48 +153,49 @@
                     <div class="container">
                         <br>
                         <div class="row g-2">
-                            <br>
-                            <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Nuevo Usuario</h1>
+                            <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Detalle Usuario</h1>
                             <br><br><br>
-                            <div class="form-customed">
-                                <form class="row g-3" action="#" method="post">
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" id="nombre" placeholder="Nombres" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" id="apellido" placeholder="Apellidos" required>
+                            <div class="form-customed row g-3">
+                                <div class="col-md-6">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" value="<?php echo "".$u->getNombre(); ?>" disabled>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="apeliido">Apellido</label>
+                                    <input type="text" class="form-control" id="apellido" value="<?php echo "".$u->getApellido(); ?>" disabled>
+                                    <br>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="username">Nombre de Usuario</label>
+                                    <input type="text" class="form-control" id="username" name="username" value="<?php echo "".$u->getUsername(); ?>" disabled>
                                         <br>
                                     </div>
-                                    <div class="col-12">
-                                        <input type="text" class="form-control" id="username" placeholder="Nombre de Usuario" required>
+                                    
+                                    <div class="col-md-12">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" value="<?php echo "".$u->getEmail(); ?>" disabled>
                                         <br>
                                     </div>
-                                    <div class="col-12">
-                                        <input type="password" class="form-control" id="password" placeholder="Contraseña" required>
-                                        <br>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label class="text-gray-800 text-left">Estado</label>
-                                        <label class="form-switch" id="estado">
-                                            Inactivo
-                                            <input type="checkbox" value="1">
-                                            <i></i>
-                                            Activo
-                                        </label>
-                                        <br>
-                                    </div>
-                                    <div class="col-md-9"><input type="hidden" name="create" value="create"></div>
-                                    <div class="col-12"><br></div>
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-4">
-                                        <input type="submit" class="btn btn-primary form-control" id="enviar" value="Guardar">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a class="btn btn-danger form-control" id="cancelar" href="gestor-usuarios.phtml">Cancelar</a>
-                                    </div>
-                                </form>
-                            </div>
+                                <div class="col-md-12">
+                                    <label class="text-gray-800 text-left">Estado</label>
+                                    <br>
+                                    <label class="form-switch" id="estado">
+                                        Inactivo
+                                        <input type="checkbox" value="<?php echo "".$u->getEstado(); ?>" 
+                                        <?php if($u->getEstado() == 1){
+                                                echo " checked ";
+                                            }?>disabled>
+                                        <i></i>
+                                        Activo
+                                    </label>
+                                    <br>
+                                </div>
+                                <div class="col-md-4"><a href="" hidden></a></div>
+                                <div class="col-md-4">
+                                    <a class="btn btn-info form-control" id="back" href="gestor-usuarios.php">Volver atrás</a>
+                                </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -231,7 +238,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.phtml">Logout</a>
+                    <a class="btn btn-primary" href="login.php">Logout</a>
                 </div>
             </div>
         </div>
