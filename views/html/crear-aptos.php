@@ -1,3 +1,8 @@
+<?php
+    include('../../controllers/session.php');
+    require_once('../../controllers/torreCrud.php');
+    $torres = TorreCrud::listar();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -149,28 +154,31 @@
                             <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Nuevo Apartamento</h1>
                             <br><br>
                             <div class="form-customed">
-                                <form class="row g-3" action="#" method="post">
+                                <form class="row g-3" action="../../controllers/ApartamentoController.php" method="post">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="torres">Torre</label>
-                                            <select class="form-control" id="torres">
-                                                <option value="">Escoja una Torre</option>
-                                                <option value="Torre A">Torre A</option>
-                                                <option value="Torre B">Torre B</option>
-                                                <option value="Torre C">Torre C</option>
+                                            <select class="form-control" id="torres" name="idTorre">
+                                                <option value="">Escoja una Torre</option> 
+                                                <?php
+                                                foreach ($torres as $t) {
+                                                    echo '<option value="'.$t->getIdTorre().'">'.$t->getNombre().'</option>';
+                                                }
+                                                    
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="number" class="form-control" id="num_apto" placeholder="N° Apartamento" required>
+                                        <input type="number" class="form-control" id="num_apto" name="num_apto" placeholder="N° Apartamento" required>
                                         <br>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="number" class="form-control" id="num_piso" placeholder="N° de Piso" required>
+                                        <input type="number" class="form-control" id="num_piso" name="num_piso" placeholder="N° de Piso" required>
                                         <br>
                                     </div>
                                     <div class="col-12">
-                                        <input type="text" class="form-control" id="area" placeholder="Area en M²" required>
+                                        <input type="text" class="form-control" id="area" name="area" placeholder="Area en M²" required>
                                         <br>
                                     </div>
                                     <div class="col-md-12">
@@ -178,7 +186,8 @@
                                         <br>
                                         <label class="form-switch" id="estado">
                                             Ocupado
-                                            <input class="col-md-1" type="checkbox" value="1">
+                                            <input type="hidden" name="estado" value="0">
+                                            <input class="col-md-1" type="checkbox" value="1" name="estado">
                                             <i></i>
                                             Disponible
                                         </label>

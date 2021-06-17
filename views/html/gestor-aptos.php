@@ -1,3 +1,11 @@
+<?php
+    include('../../controllers/session.php');
+    require_once('../../controllers/ApartamentoCrud.php');
+    require_once('../../controllers/TorreCrud.php');
+    $apartamentos = ApartamentoCrud::listar();
+    $torres = TorreCrud::listar();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -28,7 +36,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.phtml">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <img class="title-logo" src="../assets/title.png" alt="logo">
             </a>
 
@@ -37,7 +45,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.phtml">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -52,7 +60,7 @@
 
             <!-- Nav Item - USUARIOS -->
             <li class="nav-item">
-                <a id="users-link" class="nav-link" href="gestor-usuarios.phtml">
+                <a id="users-link" class="nav-link" href="gestor-usuarios.php">
                     <i class="fas fa-users"></i>
                     <span>Gestión de Usuarios</span>
                 </a>
@@ -60,7 +68,7 @@
 
             <!-- Nav Item - TORRES -->
             <li class="nav-item">
-                <a id="torres-link" class="nav-link" href="gestor-torres.phtml">
+                <a id="torres-link" class="nav-link" href="gestor-torres.php">
                     <i class="fas fa-building"></i>
                     <span>Gestión de Torres</span>
                 </a>
@@ -68,7 +76,7 @@
 
             <!-- Nav Item - APARTAMENTOS -->
             <li class="nav-item">
-                <a id="aptos-link" class="nav-link" href="gestor-aptos.phtml">
+                <a id="aptos-link" class="nav-link" href="gestor-aptos.php">
                     <i class="fas fa-door-closed"></i>
                     <span>Gestión de Apartamentos</span>
                 </a>
@@ -76,7 +84,7 @@
 
             <!-- Nav Item - INQUILINOS -->
             <li class="nav-item">
-                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.phtml">
+                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.php">
                     <i class="fas fa-address-book"></i>
                     <span>Gestión de Inquilinos</span>
                 </a>
@@ -150,13 +158,13 @@
                             <br>
                             <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Gestor de Apartamentos</h1>
                             <br>
-                            <a id="create-usuario" class="btn btn-info btn-create col-md-2" href="crear-aptos.phtml">Crear Apartamento</a>
+                            <a id="create-usuario" class="btn btn-info btn-create col-md-2" href="crear-aptos.php">Crear Apartamento</a>
                             <table class="table table-striped" id="table">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">N° Apto</th>
                                         <th scope="col">Torre</th>
+                                        <th scope="col">N° Apto</th>
                                         <th scope="col">Inquilino Principal</th>
                                         <th scope="col">Area m<sup>2</sup></th>
                                         <th scope="col">Estado</th>
@@ -164,63 +172,39 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>101</td>
-                                        <td>Torre A</td>
-                                        <td>Jorge Ayala</td>
-                                        <td>50</td>
-                                        <td>
-                                            <label class="form-switch" name="state">
-                                                Ocupado
-                                                <input type="checkbox" value="1">
-                                                <i></i>
-                                                Disponible
-                                            </label>
+                                <?php
+                                $i = 0;
+                                foreach($apartamentos as $a){
+                                    $i++;
+                                    echo "<tr>";
+                                    echo '<th scope="row">'.$i.'</th>';
+                                    foreach ($torres as $torre){
+                                        if($torre->getIdTorre() == $a->getTorres_idTorre()){
+                                            echo '<td>'.$torre->getNombre().'</td>';
+                                        }
+                                    }    
+                                    echo '<td>'.$a->getNum_apto().'</td>';  
+                                    echo '<td>Jorge Ayala</td>';
+                                    echo '<td>'.$a->getArea().'</td>';
+                                    echo '<td>';   
+                                    echo '<label class="form-switch" name="state">
+                                        Ocupado
+                                        <input type="checkbox" value="'.$a->getEstado().'"';
+                                         if ($a->getEstado() == 1){
+                                             echo 'checked ';
+                                         }
+                                    echo 'onclick="edit('.$a->getIdApartamento().','.$a->getEstado().')">';
+                                    echo '<i></i>
+                                        Disponible
+                                        </label>
+                                     </td>';
+                                    echo '<td>
+                                            <a href="detalle-apto.php?id='.$a->getIdApartamento().'" class="act-btn"><span><i class="fas fa-search"></i></span></a>
+                                            <a class="text-danger act-btn" href="" onclick="remove('.$a->getIdApartamento().')"><span><i class="fas fa-trash"></i></span></a>
                                         </td>
-                                        <td>
-                                            <a href="detalle-apto.phtml" class="act-btn"><span><i class="fas fa-search"></i></span></a>
-                                            <a class="text-danger act-btn" href="#"><span><i class="fas fa-trash"></i></span></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>102</td>
-                                        <td>Torre A</td>
-                                        <td>Jorge Ayala</td>
-                                        <td>50</td>
-                                        <td>
-                                            <label class="form-switch" name="state">
-                                                Ocupado
-                                                <input type="checkbox" value="1" checked>
-                                                <i></i>
-                                                Disponible
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="act-btn"><span><i class="fas fa-search"></i></span></a>
-                                            <a class="text-danger act-btn" href="#"><span><i class="fas fa-trash"></i></span></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>103</td>
-                                        <td>Torre A</td>
-                                        <td>Jorge Ayala</td>
-                                        <td>50</td>
-                                        <td>
-                                            <label class="form-switch" name="state">
-                                                Ocupado
-                                                <input type="checkbox" value="1" checked>
-                                                <i></i>
-                                                Disponible
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="act-btn"><span><i class="fas fa-search"></i></span></a>
-                                            <a class="text-danger act-btn" href="#"><span><i class="fas fa-trash"></i></span></a>
-                                        </td>
-                                    </tr>
+                                    </tr>';
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
@@ -265,7 +249,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.phtml">Logout</a>
+                    <a class="btn btn-primary" href="login.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -282,7 +266,6 @@
     <!-- Custom scripts for all pages-->
     <script src="../js/sb-admin-2.min.js"></script>
 
-    <script src="../js/iframe.js"></script>
-<script src="../js/tables.js"></script>
+    <script src="../js/actions.js"></script>
 
 </html>

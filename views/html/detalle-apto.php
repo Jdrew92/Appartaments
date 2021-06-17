@@ -1,3 +1,16 @@
+<?php
+    include('../../controllers/session.php');
+    require_once('../../controllers/ApartamentoCrud.php');
+    require_once('../../controllers/torreCrud.php');
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $a = ApartamentoCrud::buscar($id);
+        $torres = TorreCrud::listar();
+    }
+
+    
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -28,7 +41,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.phtml">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <img class="title-logo" src="../assets/title.png" alt="logo">
             </a>
 
@@ -37,7 +50,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.phtml">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -52,7 +65,7 @@
 
             <!-- Nav Item - USUARIOS -->
             <li class="nav-item">
-                <a id="users-link" class="nav-link" href="gestor-usuarios.phtml">
+                <a id="users-link" class="nav-link" href="gestor-usuarios.php">
                     <i class="fas fa-users"></i>
                     <span>Gestión de Usuarios</span>
                 </a>
@@ -60,7 +73,7 @@
 
             <!-- Nav Item - TORRES -->
             <li class="nav-item">
-                <a id="torres-link" class="nav-link" href="gestor-torres.phtml">
+                <a id="torres-link" class="nav-link" href="gestor-torres.php">
                     <i class="fas fa-building"></i>
                     <span>Gestión de Torres</span>
                 </a>
@@ -68,7 +81,7 @@
 
             <!-- Nav Item - APARTAMENTOS -->
             <li class="nav-item">
-                <a id="aptos-link" class="nav-link" href="gestor-aptos.phtml">
+                <a id="aptos-link" class="nav-link" href="gestor-aptos.php">
                     <i class="fas fa-door-closed"></i>
                     <span>Gestión de Apartamentos</span>
                 </a>
@@ -76,7 +89,7 @@
 
             <!-- Nav Item - INQUILINOS -->
             <li class="nav-item">
-                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.phtml">
+                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.php">
                     <i class="fas fa-address-book"></i>
                     <span>Gestión de Inquilinos</span>
                 </a>
@@ -154,26 +167,30 @@
                                     <div class="form-group">
                                         <label for="torres">Torre</label>
                                         <select class="form-control" id="torres" disabled>
-                                            <option value="">Escoja una Torre</option>
-                                            <option value="Torre A" selected>Torre A</option>
-                                            <option value="Torre B">Torre B</option>
-                                            <option value="Torre C">Torre C</option>
+                                            <option value="<?php echo "".$a->getTorres_idTorre(); ?>" selected>
+                                            <?php
+                                                foreach($torres as $t){
+                                                    if($t->getIdTorre() == $a->getTorres_idTorre()){
+                                                        echo "".$t->getNombre();
+                                                    }
+                                                }
+                                            ?></option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="num_apto">N° de Apartamento</label>
-                                    <input type="number" class="form-control" id="num_apto" value="101" disabled>
+                                    <input type="number" class="form-control" id="num_apto" value="<?php echo "".$a->getNum_apto(); ?>" disabled>
                                     <br>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="num_piso">N° de Piso</label>
-                                    <input type="number" class="form-control" id="num_piso" value="1" disabled>
+                                    <input type="number" class="form-control" id="num_piso" value="<?php echo "".$a->getNum_piso(); ?>" disabled>
                                     <br>
                                 </div>
                                 <div class="col-12">
                                     <label for="area">Área en M²</label>
-                                    <input type="text" class="form-control" id="area" value="50" disabled>
+                                    <input type="text" class="form-control" id="area" value="<?php echo "".$a->getArea(); ?>" disabled>
                                     <br>
                                 </div>
                                 <div class="col-md-12">
@@ -181,7 +198,12 @@
                                     <br>
                                     <label class="form-switch" id="estado">
                                         Ocupado
-                                        <input class="col-md-1" type="checkbox" value="1" disabled>
+                                        <input class="col-md-1" type="checkbox" value="<?php echo "".$a->getEstado(); ?>" 
+                                        <?php 
+                                            if($a->getEstado()==1){
+                                                echo " checked ";
+                                            }
+                                        ?>disabled>
                                         <i></i>
                                         Disponible
                                     </label>
@@ -189,7 +211,7 @@
                                 </div>
                                 <div class="col-md-4"><a href="" hidden></a></div>
                                 <div class="col-md-4">
-                                    <a href="gestor-aptos.phtml" class="btn btn-info form-control" id="back">Volver atrás</a>
+                                    <a href="gestor-aptos.php" class="btn btn-info form-control" id="back">Volver atrás</a>
                                 </div>
                             </div>
                         </div>
@@ -234,7 +256,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.phtml">Logout</a>
+                    <a class="btn btn-primary" href="login.php">Logout</a>
                 </div>
             </div>
         </div>

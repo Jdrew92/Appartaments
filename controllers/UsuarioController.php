@@ -31,7 +31,7 @@
             $estado = 1;
         }
         UsuarioCrud::editar($id, $estado);
-        header('Location: ../Vistas/index.php');
+        header('Location: ../views/html/index.php');
     } elseif(isset($_POST['test'])){
         echo "Es un test";
     }
