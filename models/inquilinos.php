@@ -4,6 +4,7 @@ class Inquilino{
 
 	protected $idInquilino;
 	protected $nombre;
+    protected $apellido;
     protected $cedula;
     protected $fecha_mudanza;
     protected $propietario;
@@ -27,6 +28,15 @@ class Inquilino{
     public function getNombre(){
         return $this->nombre;
     }
+
+    public function setApellido($apellido){
+        $this->apellido = $apellido;
+        return $this;
+    }
+    public function getApellido(){
+        return $this->apellido;
+    }
+
 /////
     public function setCedula($cedula){
         $this->cedula = $cedula;

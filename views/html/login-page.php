@@ -1,7 +1,11 @@
 <?php
 $error = 0;
+$adminE = 0;
 if (isset($_GET['error'])) {
     $error = $_GET['error'];
+}
+if (isset($_GET['adminE'])){
+    $adminE = $_GET['adminE'];
 }
 ?>
 <!DOCTYPE html>
@@ -55,7 +59,10 @@ if (isset($_GET['error'])) {
                                         <div class="text-center">
                                             <span class="text-danger"><?php if ($error == 1) {
                                                                             echo 'El usuario y/o contraseña están errados';
-                                                                        } ?></span>
+                                                                        } else if ($adminE == 1){
+                                                                            echo 'No tiene permiso de ingreso. <br>';
+                                                                            echo 'Contacte al administrador.';
+                                                                        }?></span>
                                         </div>
 
                                     </form>

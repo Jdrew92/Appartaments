@@ -9,6 +9,7 @@
     if(isset($_POST['create'])){
         $i->setApartamentos_idApartamento($_POST['apto']);
         $i->setNombre($_POST['nombre']);
+        $i->setApellido($_POST['apellido']);
         $i->setCedula($_POST['cedula']);
         $i->setFecha_mudanza($_POST['fecha_mudanza']);
         
