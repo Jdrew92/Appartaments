@@ -25,7 +25,7 @@ class Apartamento{
         return $this;
     }
 
-    public function getidApartamento(){
+    public function getIdApartamento(){
         return $this->idApartamento;
     }
 /////

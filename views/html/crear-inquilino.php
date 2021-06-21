@@ -1,3 +1,17 @@
+<?php
+include('../../controllers/session.php');
+require_once('../../controllers/torreCrud.php');
+require_once('../../controllers/ApartamentoCrud.php');
+$id = 1;
+$disable = true;
+if (isset($_GET['idt'])) {
+    $id = $_GET['idt'];
+    $disable = false;
+}
+$torres = TorreCrud::listar();
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -28,7 +42,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.phtml">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <img class="title-logo" src="../assets/title.png" alt="logo">
             </a>
 
@@ -37,7 +51,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.phtml">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -52,7 +66,7 @@
 
             <!-- Nav Item - USUARIOS -->
             <li class="nav-item">
-                <a id="users-link" class="nav-link" href="gestor-usuarios.phtml">
+                <a id="users-link" class="nav-link" href="gestor-usuarios.php">
                     <i class="fas fa-users"></i>
                     <span>Gestión de Usuarios</span>
                 </a>
@@ -60,7 +74,7 @@
 
             <!-- Nav Item - TORRES -->
             <li class="nav-item">
-                <a id="torres-link" class="nav-link" href="gestor-torres.phtml">
+                <a id="torres-link" class="nav-link" href="gestor-torres.php">
                     <i class="fas fa-building"></i>
                     <span>Gestión de Torres</span>
                 </a>
@@ -68,7 +82,7 @@
 
             <!-- Nav Item - APARTAMENTOS -->
             <li class="nav-item">
-                <a id="aptos-link" class="nav-link" href="gestor-aptos.phtml">
+                <a id="aptos-link" class="nav-link" href="gestor-aptos.php">
                     <i class="fas fa-door-closed"></i>
                     <span>Gestión de Apartamentos</span>
                 </a>
@@ -76,7 +90,7 @@
 
             <!-- Nav Item - INQUILINOS -->
             <li class="nav-item">
-                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.phtml">
+                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.php">
                     <i class="fas fa-address-book"></i>
                     <span>Gestión de Inquilinos</span>
                 </a>
@@ -149,46 +163,61 @@
                             <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Nuevo Inquilino</h1>
                             <br><br><br>
                             <div class="form-customed">
-                                <form class="row g-3" action="#" method="post">
+                                <form class="row g-3" action="../../controllers/InquilinoController.php" method="post">
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" id="nombre" placeholder="Nombres" required>
+                                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombres" <?php if (isset($_GET['nm'])){ echo 'value="'.$_GET['nm'].'"';}?> required>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" id="apellido" placeholder="Apellidos" required>
+                                        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellidos"  <?php if (isset($_GET['ap'])){ echo 'value="'.$_GET['ap'].'"';}?> required>
                                         <br>
                                     </div>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" id="num_doc" placeholder="N° de documento" required>
+                                        <input type="text" class="form-control" id="num_doc" name="cedula" placeholder="N° de documento" <?php if (isset($_GET['dc'])){ echo 'value="'.$_GET['dc'].'"';}?> required>
                                     </div>
                                     <br><br>
                                     <div class="form-group col-md-6">
                                         <label for="torres">Torre</label>
-                                        <select class="form-control" id="torres" required>
+                                        <select class="form-control" id="torres" name="torre" onchange="selectTorre()" required>
                                             <option value="">Escoja una Torre</option>
-                                            <option value="Torre A">Torre A</option>
-                                            <option value="Torre B">Torre B</option>
-                                            <option value="Torre C">Torre C</option>
+                                            <?php
+                                            foreach ($torres as $t) {
+                                                echo '<option value="' . $t->getIdTorre().'"';
+                                                if (isset($_GET['idt']) and $_GET['idt'] == $t->getIdTorre()){
+                                                    echo " selected ";
+                                                }
+                                                echo '>' . $t->getNombre() . '</option>';
+                                            }
+                                            ?>
                                         </select>
                                     </div>
+
                                     <div class="form-group col-md-6">
                                         <label for="aptos">Apartamento</label>
-                                        <select class="form-control" id="aptos" required>
-                                            <option value="">Escoja una Apartamento</option>
-                                            <option value="101">101</option>
-                                            <option value="102">102</option>
-                                            <option value="103">103</option>
+                                        <select class="form-control" id="aptos" name="apto" required <?php if ($disable) {
+                                                                                                echo "disabled";
+                                                                                            } ?>>
+                                            <option value="">Escoja un Apartamento</option>
+                                            <?php
+                                            if (isset($_GET['idt'])) {
+                                                $apartamentos = ApartamentoCrud::listarPorTorre($id);
+                                                foreach ($apartamentos as $a) {
+                                                    echo '<option value="' . $a->getIdApartamento() . '">' . $a->getNum_apto() . '</option>';
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                     <div class="col-12">
                                         <label for="fecha_mudanza">Fecha de Mudanza</label>
-                                        <input type="date" class="form-control" id="fecha_mudanza" placeholder="Fecha de Mudanza" required>
+                                        <input type="date" class="form-control" id="fecha_mudanza" name="fecha_mudanza" placeholder="Fecha de Mudanza" required>
                                         <br>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="text-gray-800 text-left">Propietario</label>
                                         <label class="form-switch" id="estado">
                                             No
-                                            <input type="checkbox" value="1">
+                                            <input type="hidden" name="propietario" value="0">
+                                            <input type="checkbox" name="propietario" value="1">
                                             <i></i>
                                             Sí
                                         </label>
@@ -198,7 +227,8 @@
                                         <label class="text-gray-800 text-left">Vehículo</label>
                                         <label class="form-switch" id="estado">
                                             No
-                                            <input type="checkbox" value="1">
+                                            <input type="hidden" name="vehiculo" value="0">
+                                            <input type="checkbox" name="vehiculo" value="1">
                                             <i></i>
                                             Sí
                                         </label>
@@ -211,7 +241,7 @@
                                         <input type="submit" class="btn btn-primary form-control" id="enviar" value="Guardar">
                                     </div>
                                     <div class="col-md-4">
-                                        <a class="btn btn-danger form-control" id="cancelar" href="gestor-inquilinos.phtml">Cancelar</a>
+                                        <a class="btn btn-danger form-control" id="cancelar" href="gestor-inquilinos.php">Cancelar</a>
                                     </div>
                                 </form>
                             </div>
@@ -257,7 +287,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.phtml">Logout</a>
+                    <a class="btn btn-primary" href="login.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -276,6 +306,6 @@
 <!-- Custom scripts for all pages-->
 <script src="../js/sb-admin-2.min.js"></script>
 
-<script src="../js/iframe.js"></script>
+<script src="../js/actions.js"></script>
 
 </html>

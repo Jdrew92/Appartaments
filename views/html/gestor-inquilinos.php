@@ -1,3 +1,12 @@
+<?php
+include('../../controllers/session.php');
+require_once('../../controllers/InquilinoCrud.php');
+require_once('../../controllers/torreCrud.php');
+require_once('../../controllers/ApartamentoCrud.php');
+$inquilinos = InquilinoCrud::listarView();
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -28,7 +37,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.phtml">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <img class="title-logo" src="../assets/title.png" alt="logo">
             </a>
 
@@ -37,7 +46,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.phtml">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -52,7 +61,7 @@
 
             <!-- Nav Item - USUARIOS -->
             <li class="nav-item">
-                <a id="users-link" class="nav-link" href="gestor-usuarios.phtml">
+                <a id="users-link" class="nav-link" href="gestor-usuarios.php">
                     <i class="fas fa-users"></i>
                     <span>Gestión de Usuarios</span>
                 </a>
@@ -60,7 +69,7 @@
 
             <!-- Nav Item - TORRES -->
             <li class="nav-item">
-                <a id="torres-link" class="nav-link" href="gestor-torres.phtml">
+                <a id="torres-link" class="nav-link" href="gestor-torres.php">
                     <i class="fas fa-building"></i>
                     <span>Gestión de Torres</span>
                 </a>
@@ -68,7 +77,7 @@
 
             <!-- Nav Item - APARTAMENTOS -->
             <li class="nav-item">
-                <a id="aptos-link" class="nav-link" href="gestor-aptos.phtml">
+                <a id="aptos-link" class="nav-link" href="gestor-aptos.php">
                     <i class="fas fa-door-closed"></i>
                     <span>Gestión de Apartamentos</span>
                 </a>
@@ -76,7 +85,7 @@
 
             <!-- Nav Item - INQUILINOS -->
             <li class="nav-item">
-                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.phtml">
+                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.php">
                     <i class="fas fa-address-book"></i>
                     <span>Gestión de Inquilinos</span>
                 </a>
@@ -149,13 +158,13 @@
                         <div class="row g-2">
                             <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Gestor de Inquilinos</h1>
                             <br>
-                            <a id="create-tenant" class="btn btn-info btn-create col-md-2" href="crear-inquilino.phtml">Nuevo Inquilino</a>
+                            <a id="create-tenant" class="btn btn-info btn-create col-md-2" href="crear-inquilino.php">Nuevo Inquilino</a>
                             <table class="table table-striped" id="table">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Nombre</th>
-                                        <th scope="col">Apellido</th>
+                                        <th scope="col">Cedula</th>
                                         <th scope="col">Apartamento</th>
                                         <th scope="col">Torre</th>
                                         <th scope="col">Fecha de Mudanza</th>
@@ -165,90 +174,47 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Jorge</td>
-                                        <td>Ayala</td>
-                                        <td>101</td>
-                                        <td>Torre A</td>
-                                        <td>11/06/2021</td>
-                                        <td>
-                                            <label class="form-switch" name="state">
-                                                No
-                                                <input type="checkbox" value="1" checked>
-                                                <i></i>
-                                                Sí
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label class="form-switch" name="state">
-                                                No
-                                                <input type="checkbox" value="1" checked>
-                                                <i></i>
-                                                Sí
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a href="detalle-inquilino.phtml" class="act-btn"><span><i class="fas fa-search"></i></span></a>
-                                            <a class="text-danger act-btn" href="#"><span><i class="fas fa-trash"></i></span></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Jorge</td>
-                                        <td>Ayala</td>
-                                        <td>101</td>
-                                        <td>Torre A</td>
-                                        <td>11/06/2021</td>
-                                        <td>
-                                            <label class="form-switch" name="state">
-                                                No
-                                                <input type="checkbox" value="1" checked>
-                                                <i></i>
-                                                Sí
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label class="form-switch" name="state">
-                                                No
-                                                <input type="checkbox" value="1" checked>
-                                                <i></i>
-                                                Sí
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="act-btn"><span><i class="fas fa-search"></i></span></a>
-                                            <a class="text-danger act-btn" href="#"><span><i class="fas fa-trash"></i></span></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Jorge</td>
-                                        <td>Ayala</td>
-                                        <td>101</td>
-                                        <td>Torre A</td>
-                                        <td>11/06/2021</td>
-                                        <td>
-                                            <label class="form-switch" name="state">
-                                                No
-                                                <input type="checkbox" value="1" checked>
-                                                <i></i>
-                                                Sí
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label class="form-switch" name="state">
-                                                No
-                                                <input type="checkbox" value="1" checked>
-                                                <i></i>
-                                                Sí
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="act-btn"><span><i class="fas fa-search"></i></span></a>
-                                            <a class="text-danger act-btn" href="#"><span><i class="fas fa-trash"></i></span></a>
-                                        </td>
-                                    </tr>
+                                <?php
+                                    $i = 0;
+                                    foreach ($inquilinos as $t) {
+                                        $i++;
+                                        echo "<tr>";
+                                        echo '<th scope="row">' . $i . '</th>';
+                                        echo '<td>' . $t->getNombre() . '</td>';
+                                        echo '<td>' . $t->getCedula() . '</td>';
+                                        echo '<td>' . $t->getNum_apto() . '</td>';
+                                        echo '<td>' . $t->getTorre() . '</td>';
+                                        echo '<td>' . $t->getFecha_mudanza() . '</td>';
+                                        echo '<td>
+                                        <label class="form-switch" name="propietario">
+                                        No
+                                        <input type="checkbox" value="' . $t->getPropietario() . '"';
+                                        if ($t->getPropietario() == 1) {
+                                            echo ' checked ';
+                                        }
+                                        echo '>
+                                        <i></i>
+                                        Sí
+                                        </label>
+                                        </td>';
+                                        echo '<td>
+                                        <label class="form-switch" name="vehiculo">
+                                        No
+                                        <input type="checkbox" value="' . $t->getVehiculo() . '"';
+                                        if ($t->getVehiculo() == 1) {
+                                            echo ' checked ';
+                                        }
+                                        echo ' onclick="edit('.$t->getIdInquilino().','.$t->getVehiculo().')">
+                                        <i></i>
+                                        Sí
+                                        </label>
+                                        </td>';
+                                        echo '<td>
+                                        <a href="detalle-inquilino.php?id='.$t->getIdInquilino().'" class="act-btn"><span><i class="fas fa-search"></i></span></a>
+                                            <a class="text-danger act-btn" href="" onclic="remove('.$t->getIdInquilino().')"><span><i class="fas fa-trash"></i></span></a>
+                                        </td>';
+                                        echo '</tr>';
+                                    } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -293,7 +259,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.phtml">Logout</a>
+                    <a class="btn btn-primary" href="login.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -301,17 +267,17 @@
 
 
 </body>
-   <!-- Bootstrap core JavaScript-->
-   <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="../js/sb-admin-2.min.js"></script>
 
-    <script src="../js/iframe.js"></script>
+<script src="../js/iframe.js"></script>
 <script src="../js/tables.js"></script>
 
 </html>

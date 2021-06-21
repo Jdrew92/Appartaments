@@ -23,7 +23,23 @@
             $selectAll = $db->query("SELECT * FROM apartamentos");
             foreach ($selectAll->fetchAll() as $apartment) {
                 $a = new Apartamento();
-                $t = new Torre();
+                $a->setIdApartamento($apartment['idApartamento']);
+                $a->setTorres_idTorre($apartment['Torres_idTorre']);
+                $a->setNum_apto($apartment['num_apto']);
+                $a->setNum_piso($apartment['num_piso']);
+                $a->setArea($apartment['area']);
+                $a->setEstado($apartment['estado']);
+                $apartments_list[] = $a;
+            }
+            return $apartments_list;
+        }
+
+        public static function listarPorTorre($id){
+            $db = Db::conectar();
+            $apartments_list = [];
+            $selectAll = $db->query('SELECT * FROM apartamentos WHERE Torres_idTorre = '.$id.' AND estado = 1');
+            foreach ($selectAll->fetchAll() as $apartment) {
+                $a = new Apartamento();
                 $a->setIdApartamento($apartment['idApartamento']);
                 $a->setTorres_idTorre($apartment['Torres_idTorre']);
                 $a->setNum_apto($apartment['num_apto']);

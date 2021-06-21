@@ -1,3 +1,12 @@
+<?php
+    include('../../controllers/session.php');
+    require_once('../../controllers/InquilinoCrud.php');
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $tenant = InquilinoCrud::buscar($id);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -28,7 +37,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.phtml">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <img class="title-logo" src="../assets/title.png" alt="logo">
             </a>
 
@@ -37,7 +46,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.phtml">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -52,7 +61,7 @@
 
             <!-- Nav Item - USUARIOS -->
             <li class="nav-item">
-                <a id="users-link" class="nav-link" href="gestor-usuarios.phtml">
+                <a id="users-link" class="nav-link" href="gestor-usuarios.php">
                     <i class="fas fa-users"></i>
                     <span>Gestión de Usuarios</span>
                 </a>
@@ -60,7 +69,7 @@
 
             <!-- Nav Item - TORRES -->
             <li class="nav-item">
-                <a id="torres-link" class="nav-link" href="gestor-torres.phtml">
+                <a id="torres-link" class="nav-link" href="gestor-torres.php">
                     <i class="fas fa-building"></i>
                     <span>Gestión de Torres</span>
                 </a>
@@ -68,7 +77,7 @@
 
             <!-- Nav Item - APARTAMENTOS -->
             <li class="nav-item">
-                <a id="aptos-link" class="nav-link" href="gestor-aptos.phtml">
+                <a id="aptos-link" class="nav-link" href="gestor-aptos.php">
                     <i class="fas fa-door-closed"></i>
                     <span>Gestión de Apartamentos</span>
                 </a>
@@ -76,7 +85,7 @@
 
             <!-- Nav Item - INQUILINOS -->
             <li class="nav-item">
-                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.phtml">
+                <a id="tenants-link" class="nav-link" href="gestor-inquilinos.php">
                     <i class="fas fa-address-book"></i>
                     <span>Gestión de Inquilinos</span>
                 </a>
@@ -150,47 +159,41 @@
                             <h1 class='h3 mb-0 text-gray-800 text-md-center col-md-12'>Detalle Inquilino</h1>
                             <br><br>
                             <div class="form-customed row g-3">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <label for="nombre">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" value="Jorge" disabled>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="apellidp">Apellidos</label>
-                                    <input type="text" class="form-control" id="apellido" value="Ayala" disabled>
+                                    <input type="text" class="form-control" id="nombre" value="<?php echo "".$tenant->getNombre();?>" disabled>
                                 </div>
                                 <div class="col-md-12">
                                     <label for="num_doc">N° de Documento</label>
-                                    <input type="text" class="form-control" id="num_doc" value="1082123456" disabled>
+                                    <input type="text" class="form-control" id="num_doc" value="<?php echo "".$tenant->getCedula();?>" disabled>
                                 </div>
                                 <br><br><br>
                                 <div class="form-group col-md-6">
                                     <label for="torres">Torre</label>
                                     <select class="form-control" id="torres" disabled>
-                                        <option value="">Escoja una Torre</option>
-                                        <option value="Torre A" selected>Torre A</option>
-                                        <option value="Torre B">Torre B</option>
-                                        <option value="Torre C">Torre C</option>
+                                        <option value="<?php echo "".$tenant->getTorre();?>" selected><?php echo "".$tenant->getTorre();?></option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="aptos">Apartamento</label>
                                     <select class="form-control" id="aptos" disabled>
-                                        <option value="">Escoja una Apartamento</option>
-                                        <option value="101" selected>101</option>
-                                        <option value="102">102</option>
-                                        <option value="103">103</option>
+                                    <option value="<?php echo "".$tenant->getNum_apto();?>" selected><?php echo "".$tenant->getNum_apto();?></option>
+
                                     </select>
                                 </div>
                                 <div class="col-12">
                                     <label for="fecha_mudanza">Fecha de Mudanza</label>
-                                    <input type="date" class="form-control" id="fecha_mudanza" value="" disabled>
+                                    <input type="date" class="form-control" id="fecha_mudanza" value="<?php echo "".$tenant->getFecha_mudanza(); ?>" disabled>
                                     <br>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="text-gray-800 text-left">Propietario</label>
                                     <label class="form-switch" id="estado">
                                         No
-                                        <input type="checkbox" value="1" checked disabled>
+                                        <input type="checkbox" value="<?php $tenant->getPropietario();?>" 
+                                        <?php if($tenant->getPropietario()==1){
+                                            echo " checked";
+                                        } ?> disabled>
                                         <i></i>
                                         Sí
                                     </label>
@@ -200,7 +203,10 @@
                                     <label class="text-gray-800 text-left">Vehículo</label>
                                     <label class="form-switch" id="estado">
                                         No
-                                        <input type="checkbox" value="1" checked disabled>
+                                        <input type="checkbox" value="<?php $tenant->getVehiculo();?>" 
+                                        <?php if($tenant->getPropietario()==1){
+                                            echo " checked";
+                                        } ?> disabled>
                                         <i></i>
                                         Sí
                                     </label>
@@ -208,7 +214,7 @@
                                 </div>
                                 <div class="col-md-4"><a href="" hidden></a></div>
                                 <div class="col-md-4">
-                                    <a href="gestor-aptos.phtml" class="btn btn-info form-control" id="back">Volver atrás</a>
+                                    <a href="gestor-inquilinos.php" class="btn btn-info form-control" id="back">Volver atrás</a>
                                 </div>
                             </div>
                         </div>
@@ -253,7 +259,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.phtml">Logout</a>
+                    <a class="btn btn-primary" href="login.php">Logout</a>
                 </div>
             </div>
         </div>

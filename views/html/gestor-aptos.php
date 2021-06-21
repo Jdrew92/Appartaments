@@ -2,8 +2,10 @@
     include('../../controllers/session.php');
     require_once('../../controllers/ApartamentoCrud.php');
     require_once('../../controllers/TorreCrud.php');
+    require_once('../../controllers/InquilinoCrud.php');
     $apartamentos = ApartamentoCrud::listar();
     $torres = TorreCrud::listar();
+    $tenants = InquilinoCrud::listar();
 ?>
 
 <!DOCTYPE html>
@@ -184,7 +186,13 @@
                                         }
                                     }    
                                     echo '<td>'.$a->getNum_apto().'</td>';  
-                                    echo '<td>Jorge Ayala</td>';
+                                    echo '<td>';
+                                        foreach ($tenants as $t){
+                                            if($t->getApartamentos_idApartamento() == $a->getIdApartamento()){
+                                                echo "".$t->getNombre();
+                                            }
+                                        }
+                                    echo '</td>';
                                     echo '<td>'.$a->getArea().'</td>';
                                     echo '<td>';   
                                     echo '<label class="form-switch" name="state">
